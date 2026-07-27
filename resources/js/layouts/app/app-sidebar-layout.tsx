@@ -1,5 +1,5 @@
-import Sidebar from '@/components/sidebar';
 import Navbar from '@/components/navbar';
+import Sidebar from '@/components/sidebar';
 import type { AppLayoutProps } from '@/types';
 
 export default function AppSidebarLayout({

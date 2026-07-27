@@ -1,9 +1,12 @@
 import './css/my_sidebar.css';
+import logo from './img/logo.png';
 
 export default function Sidebar() {
     return(
         <aside className="sidebar">
-            <div className="sidevar_logo">PollApp</div>
+            <div className="sidebar_logo">
+    <img src={logo} alt="PollApp" className="sidebar_logo_img" />
+</div>
 
             <nav className="sidebar_nav">
                 <a href="/" className="sidebar_link">Home</a>
