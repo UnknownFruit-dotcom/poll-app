@@ -10,7 +10,7 @@
 
 .navbar_nav {
   display: flex;
-  gap: 16px;
+  gap: 24px;
 }
 
 .navbar_link {
@@ -19,19 +19,19 @@
 }
 
 .navbar_profile_img {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     object-fit: cover;
 }
 
 .navbar_settings_img {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     object-fit: cover;
 }
 
 .navbar_theme_img {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     object-fit: cover;
 }
