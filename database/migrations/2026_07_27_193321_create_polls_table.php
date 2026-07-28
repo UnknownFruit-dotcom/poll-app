@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('polls', function (Blueprint $table) {
             $table->id();
             $table->string('name', 150);
-            $table->string('theme', 150);
+            $table->string('theme_text', 150);
             $table->foreignId('theme_id')
                 ->nullable()
                 ->constrained('themes')
