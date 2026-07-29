@@ -18,20 +18,11 @@
   text-decoration: none;
 }
 
-.navbar_profile_img {
-    width: 35px;
-    height: 35px;
-    object-fit: cover;
-}
-
-.navbar_settings_img {
-    width: 35px;
-    height: 35px;
-    object-fit: cover;
-}
-
-.navbar_theme_img {
-    width: 35px;
-    height: 35px;
-    object-fit: cover;
+.navbar_profile_img,
+.navbar_settings_img,
+.navbar_theme_img
+ {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
 }

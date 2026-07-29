@@ -13,7 +13,9 @@ export default function Navbar() {
                 <a href="/" className="navbar_link">
                 <img src={gear} alt='Settings' className='navbar_settings_img'/>
                 </a>
+                <a href="/" className='navbar_link'>
                 <img src={sun} alt='Theme' className='navbar_theme_img'/>
+                </a>
             </nav>
         </header>
     );
