@@ -1,0 +1,16 @@
+.themes_list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    list-style: none;
+    margin: 0;
+}
+
+.theme_item {
+    padding: 12px 16px;
+    background: #f4f4f5;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #18181b;
+}
