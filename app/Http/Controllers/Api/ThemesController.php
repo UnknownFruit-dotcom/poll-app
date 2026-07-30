@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreThemeRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Theme;
 
@@ -21,12 +22,11 @@ class ThemesController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(StoreThemeRequest $request)
     {
-        //
+        $theme = Theme::create($request->validated());
+
+        return response()->json($theme, 201);
     }
 
     public function show(string $id)
@@ -50,11 +50,9 @@ class ThemesController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $theme = Theme::find($id);
+        $theme->delete();
     }
 }
