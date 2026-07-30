@@ -10,7 +10,7 @@ class PollsController extends Controller
 {
     public function index()
     {
-        return Poll::all();
+        return Poll::with('options')->get();
     }
 
     /**
@@ -29,12 +29,10 @@ class PollsController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        $poll = Poll::find($id);
+        return $poll::with('theme')->get();
     }
 
     /**

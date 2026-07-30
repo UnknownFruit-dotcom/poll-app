@@ -29,12 +29,9 @@ class ThemesController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        return Theme::find($id);
     }
 
     /**

@@ -5,4 +5,6 @@ use App\Http\Controllers\Api\ThemesController;
 use App\Http\Controllers\Api\PollsController;
 
 Route::get('themes', [ThemesController::class, 'index']);
+Route::get('themes/{id}', [ThemesController::class, 'show']);
 Route::get('polls', [PollsController::class, 'index']);
+Route::get('polls/{id}', [PollsController::class, 'show']);
