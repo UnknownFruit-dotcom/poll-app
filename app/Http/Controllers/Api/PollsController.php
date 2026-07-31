@@ -34,8 +34,7 @@ class PollsController extends Controller
 
     public function show(string $id)
     {
-        $poll = Poll::find($id);
-        return $poll::with('theme')->get();
+        return Poll::with('theme')->findOrFail($id);
     }
 
     public function addOptions(AddOptionsRequest $request, Poll $poll, AddOptions $action)
