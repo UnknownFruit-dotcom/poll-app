@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Poll;
+use App\Actions\Polls\CreatePoll;
+use App\Http\Requests\StorePollRequest;
 
 class PollsController extends Controller
 {
@@ -21,12 +23,11 @@ class PollsController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(StorePollRequest $request, CreatePoll $action)
     {
-        //
+        $poll = $action->create($request->validated());
+
+        return response()->json($poll, 201);
     }
 
     public function show(string $id)

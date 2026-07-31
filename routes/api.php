@@ -10,3 +10,4 @@ Route::post('themes', [ThemesController::class, 'store']);
 Route::delete('themes/{id}', [ThemesController::class, 'destroy']);
 Route::get('polls', [PollsController::class, 'index']);
 Route::get('polls/{id}', [PollsController::class, 'show']);
+Route::post('polls', [PollsController::class, 'store']);
