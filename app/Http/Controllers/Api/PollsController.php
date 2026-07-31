@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Poll;
 use App\Actions\Polls\CreatePoll;
+use App\Actions\Polls\AddOptions;
 use App\Http\Requests\StorePollRequest;
+use App\Http\Requests\AddOptionsRequest;
 
 class PollsController extends Controller
 {
@@ -34,6 +36,13 @@ class PollsController extends Controller
     {
         $poll = Poll::find($id);
         return $poll::with('theme')->get();
+    }
+
+    public function addOptions(AddOptionsRequest $request, Poll $poll, AddOptions $action)
+    {
+        $options = $action->add($poll, $request->validated('options'));
+
+        return response()->json($options, 201);
     }
 
     /**
