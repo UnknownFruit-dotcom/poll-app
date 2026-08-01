@@ -14,7 +14,7 @@ class PollsController extends Controller
 {
     public function index()
     {
-        return Poll::with('options')->get();
+        return Poll::all();
     }
 
     /**
@@ -34,7 +34,7 @@ class PollsController extends Controller
 
     public function show(string $id)
     {
-        return Poll::with('theme')->findOrFail($id);
+        return Poll::with('theme', 'options')->findOrFail($id);
     }
 
     public function addOptions(AddOptionsRequest $request, Poll $poll, AddOptions $action)
