@@ -7,8 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Poll;
 use App\Actions\Polls\CreatePoll;
 use App\Actions\Polls\AddOptions;
+use App\Actions\Polls\ChooseOption;
 use App\Http\Requests\StorePollRequest;
 use App\Http\Requests\AddOptionsRequest;
+use App\Http\Requests\ChooseOptionRequest;
 
 class PollsController extends Controller
 {
@@ -42,6 +44,18 @@ class PollsController extends Controller
         $options = $action->add($poll, $request->validated('options'));
 
         return response()->json($options, 201);
+    }
+
+    public function chooseOption(ChooseOptionRequest $request, Poll $poll, ChooseOption $action) {
+        $userId = auth()->id();
+
+        $userVote = $action->vote(
+            $poll,
+            $request->validated(),
+            $userId
+        );
+
+        return response()->json($userVote, 201);
     }
 
     /**
