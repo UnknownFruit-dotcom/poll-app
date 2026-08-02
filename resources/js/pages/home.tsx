@@ -9,8 +9,8 @@ export default function Home() {
     const {themes, isLoading: isLoadingThemes, error: themesError} = useThemes();
     
     return (
-        <main style={{ minHeight: "100vh", background: "#ffffff" }}>
-            <h2>Themes</h2>
+        <main className="home_page">
+            <h2 className='section_title'>Themes</h2>
 
             {isLoadingThemes && <p>Loading themes...</p>}
             {themesError && <p>Error loading themes: {themesError}</p>}
@@ -28,7 +28,7 @@ export default function Home() {
             </section>
             
             <section>
-            <h2>Polls</h2>
+            <h2 className="section_title">Polls</h2>
             {isLoadingPolls && <p>Loading polls...</p>}
             {pollsError && <p>Error loading polls: {pollsError}</p>}
 
@@ -38,8 +38,8 @@ export default function Home() {
                         <li className="polls_item" key={poll.id}>
                             <h3 className="polls_item_title">{poll.name}</h3>
                             <p className="polls_item_theme">{poll.theme_text}</p>
-                            <span className='polls_item_status'>
-                                {poll.status === 'published' ? 'Publishes' : 'Unpublished'}
+                            <span className={`badge ${poll.status === 'published' ? 'badge--published' : 'badge--unpublished'}`}>
+                                {poll.status === 'published' ? 'Published' : 'Unpublished'}
                             </span>
                         </li>
                     ))}

@@ -95,6 +95,19 @@
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.87 0 0);
+
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-6: 24px;
+
+    --brand-purple: #4F46E5;
+    --color-bg: #ffffff;
+    --color-surface: #f4f4f5;
+    --color-border: #e4e4e7;
+    --color-text: #18181b;
+    --color-text-muted: #71717a;
 }
 
 .dark {
