@@ -9,6 +9,7 @@ Route::get('themes', [ThemesController::class, 'index']);
 Route::get('themes/{id}', [ThemesController::class, 'show']);
 Route::post('themes', [ThemesController::class, 'store']);
 Route::delete('themes/{id}', [ThemesController::class, 'destroy']);
+Route::patch('themes/{theme}', [ThemesController::class, 'update']);
 Route::get('polls', [PollsController::class, 'index']);
 Route::get('polls/{id}', [PollsController::class, 'show']);
 Route::post('polls', [PollsController::class, 'store']);
