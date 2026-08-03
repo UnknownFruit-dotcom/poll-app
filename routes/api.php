@@ -15,3 +15,4 @@ Route::get('polls/{id}', [PollsController::class, 'show']);
 Route::post('polls', [PollsController::class, 'store']);
 Route::post('polls/{poll}/options', [PollsController::class, 'addOptions']);
 Route::post('polls/{poll}/vote', [PollsController::class, 'chooseOption'])->middleware(['throttle:10,1', VoteThrottle::class]);
+Route::patch('polls/{poll}', [PollsController::class, 'update']);
