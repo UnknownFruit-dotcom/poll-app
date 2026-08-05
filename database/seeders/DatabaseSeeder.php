@@ -29,19 +29,19 @@ class DatabaseSeeder extends Seeder
             'name' => 'Education',
         ]);
 
-        Theme::create([
+        $theme1 = Theme::create([
             'name' => 'Work',
         ]);
 
-        Theme::create([
+        $theme2 = Theme::create([
             'name' => 'Politics',
         ]);
 
-        Theme::create([
+        $theme3 = Theme::create([
             'name' => 'Entertainment',
         ]);
 
-        Theme::create([
+        $theme4 = Theme::create([
             'name' => 'Other',
         ]);
 
@@ -69,25 +69,25 @@ class DatabaseSeeder extends Seeder
         $poll = Poll::create([
             'name' => 'Do you want to a work call on Saturday evening??',
             'theme_text' => 'Work',
-            'theme_id' => $theme->id,
+            'theme_id' => $theme1->id,
         ]);
 
         $poll = Poll::create([
             'name' => 'Do you support Squiggly Miggly on president elections??',
             'theme_text' => 'Politics',
-            'theme_id' => $theme->id,
+            'theme_id' => $theme2->id,
         ]);
 
         $poll = Poll::create([
             'name' => 'Hop on Needy Girl Overdose!',
             'theme_text' => 'Entertainment',
-            'theme_id' => $theme->id,
+            'theme_id' => $theme3->id,
         ]);
 
         $poll = Poll::create([
             'name' => 'Are ypu a cat?',
             'theme_text' => 'Other',
-            'theme_id' => $theme->id,
+            'theme_id' => $theme4->id,
         ]);
     }
 }

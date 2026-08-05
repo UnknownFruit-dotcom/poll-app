@@ -5,22 +5,28 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Poll;
+use App\Models\Theme;
 use App\Actions\Polls\CreatePoll;
 use App\Actions\Polls\AddOptions;
 use App\Actions\Polls\ChooseOption;
 use App\Actions\Polls\UpdatePoll;
 use App\Actions\Polls\UpdatePollStatus;
+use App\Actions\Polls\GetPolls;
+
 use App\Http\Requests\StorePollRequest;
 use App\Http\Requests\AddOptionsRequest;
 use App\Http\Requests\ChooseOptionRequest;
 use App\Http\Requests\UpdatePollRequest;
 use App\Http\Requests\UpdatePollStatusRequest;
+use App\Http\Requests\GetPollsRequest;
 
 class PollsController extends Controller
 {
-    public function index()
+    public function index(GetPollsRequest $request, GetPolls $action)
     {
-        return Poll::all();
+        $polls = $action->get($request->validated());
+        
+        return response()->json($polls, 200);
     }
 
     /**
