@@ -3,6 +3,8 @@
   flex-direction: column;
   background: #5041BC;
   height: 100vh;
+  position: sticky;
+  top: 0;
   transition: width 0.2s ease;
   overflow: hidden;
 } 
