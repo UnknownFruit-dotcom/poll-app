@@ -9,10 +9,12 @@ use App\Actions\Polls\CreatePoll;
 use App\Actions\Polls\AddOptions;
 use App\Actions\Polls\ChooseOption;
 use App\Actions\Polls\UpdatePoll;
+use App\Actions\Polls\UpdatePollStatus;
 use App\Http\Requests\StorePollRequest;
 use App\Http\Requests\AddOptionsRequest;
 use App\Http\Requests\ChooseOptionRequest;
 use App\Http\Requests\UpdatePollRequest;
+use App\Http\Requests\UpdatePollStatusRequest;
 
 class PollsController extends Controller
 {
@@ -71,6 +73,12 @@ class PollsController extends Controller
     public function update(UpdatePollRequest $request, Poll $poll, UpdatePoll $action)
     {
         $poll = $action->update($poll, $request->validated());
+
+        return response()->json($poll, 200);
+    }
+
+    public function changeStatus(UpdatePollStatusRequest $request, Poll $poll, UpdatePollStatus $action) {
+        $poll = $action->change($poll, $request->validated());
 
         return response()->json($poll, 200);
     }
