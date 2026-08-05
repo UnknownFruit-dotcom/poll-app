@@ -65,5 +65,29 @@ class DatabaseSeeder extends Seeder
             'poll_id' => $poll->id,
             'content' => 'I will think about it',
         ]);
+
+        $poll = Poll::create([
+            'name' => 'Do you want to a work call on Saturday evening??',
+            'theme_text' => 'Work',
+            'theme_id' => $theme->id,
+        ]);
+
+        $poll = Poll::create([
+            'name' => 'Do you support Squiggly Miggly on president elections??',
+            'theme_text' => 'Politics',
+            'theme_id' => $theme->id,
+        ]);
+
+        $poll = Poll::create([
+            'name' => 'Hop on Needy Girl Overdose!',
+            'theme_text' => 'Entertainment',
+            'theme_id' => $theme->id,
+        ]);
+
+        $poll = Poll::create([
+            'name' => 'Are ypu a cat?',
+            'theme_text' => 'Other',
+            'theme_id' => $theme->id,
+        ]);
     }
 }
