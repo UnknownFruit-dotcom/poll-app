@@ -12,15 +12,19 @@ export type Poll = {
     updated_at: string
 }
 
-export function usePolls(){
+export function usePolls(themeId: number | null){
     const [polls, setPolls] = useState<Poll[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         let isMounted = true;
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setIsLoading(true);
         
-        fetch(index().url)
+        const url = themeId ? index({query: {theme_id: themeId}}).url : index().url;
+
+        fetch(url)
         .then((response) => {
             if(!response.ok){
                 throw new Error(`${response.status}`);
@@ -48,7 +52,7 @@ export function usePolls(){
             isMounted = false;
         }
 
-    }, []);
+    }, [themeId]);
 
     return {polls, isLoading, error};
 }

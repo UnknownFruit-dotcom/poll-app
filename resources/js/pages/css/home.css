@@ -22,12 +22,12 @@
     border-color: var(--brand-purple);
 }
 
-/* это для логики выбора темы */
-/* .theme_item--active {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
+
+.theme_item--active {
+    background: var(--brand-purple);
+    border-color: var(--brand-purple);
     color: #fff;
-} */
+}
 
 .polls_list{
     display: grid;

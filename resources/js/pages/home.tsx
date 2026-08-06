@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { usePolls } from '@/hooks/use-polls';
 import { useThemes } from '@/hooks/use-themes';
 
@@ -5,23 +6,32 @@ import './css/home.css';
 
 export default function Home() {
 
-    const {polls, isLoading: isLoadingPolls, error: pollsError} = usePolls();
+    const [selectedThemeId, setSelectedThemeId] = useState<number | null>(null)
+
+    const {polls, isLoading: isLoadingPolls, error: pollsError} = usePolls(selectedThemeId);
     const {themes, isLoading: isLoadingThemes, error: themesError} = useThemes();
     
+    function handleThemeClick(themeId: number){
+        setSelectedThemeId((current) => (current === themeId? null: themeId));
+    }
+
     return (
         <main className="home_page">
+            <section>
             <h2 className='section_title'>Themes</h2>
 
             {isLoadingThemes && <p>Loading themes...</p>}
             {themesError && <p>Error loading themes: {themesError}</p>}
-
-            <section>
+            
                 {!isLoadingThemes && !themesError && (
                 <ul className='theme_list'>
                     {themes.map((theme) => (
-                        <li className="theme_item" key={theme.id}>
-                            {theme.name}
-                        </li>
+                        <li
+                            key={theme.id}
+                            className={`theme_item ${selectedThemeId === theme.id ? 'theme_item--active' : ''}`}
+                            onClick={() => handleThemeClick(theme.id)}>
+                                {theme.name}
+                            </li>
                     ))}
                 </ul>
             )}
