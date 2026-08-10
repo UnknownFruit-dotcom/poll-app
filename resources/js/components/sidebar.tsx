@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from '@inertiajs/react';
 import './css/my_sidebar.css';
 import home from './img/home.png';
 import logo from './img/logo.png';
@@ -21,18 +22,18 @@ export default function Sidebar() {
             </div>
 
             <nav className="sidebar_nav">
-                <a href="/" className="sidebar_link">
+                <Link href="/" className="sidebar_link">
                     <img src={home} alt="Home" className="sidebar_home_img" />
                     <span className="sidebar_link_text">Home</span>
-                </a>
-                <a href="/" className="sidebar_link">
+                </Link>
+                <Link href="/my_polls" className="sidebar_link">
                 <img src={my_poll} alt="My polls" className="sidebar_my_poll_img" />
                     <span className="sidebar_link_text">My polls</span>
-                </a>
-                <a href="/" className="sidebar_link">
+                </Link>
+                <Link href="/top_polls" className="sidebar_link">
                     <img src={poll} alt="Top polls" className="sidebar_poll_img" />
                     <span className="sidebar_link_text">Top polls</span>
-                </a>
+                </Link>
                 </nav>
         </aside>
     );
