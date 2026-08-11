@@ -15,15 +15,17 @@ use Illuminate\Database\Eloquent\Collection;
  * @property string $name
  * @property string $theme_text
  * @property int|null $theme_id
+ * @property int $user_id
  * @property Status $status
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Carbon|null $published_at
  * 
  * @property-read Theme|null $theme
+ * @property-read User|null $user
  * @property-read Collection<int, Option> $options
  */
-#[Fillable(['name', 'theme_text', 'theme_id'])]
+#[Fillable(['name', 'theme_text', 'theme_id', 'user_id'])]
 class Poll extends Model
 {
     protected function casts(): array
@@ -37,6 +39,11 @@ class Poll extends Model
     public function theme(): BelongsTo
     {
         return $this->belongsTo(Theme::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function options(): HasMany

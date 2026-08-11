@@ -19,6 +19,7 @@ class StorePollRequest extends FormRequest
             'name' => ['required', 'string', 'min:3', 'max:150'],
             'theme_text' => ['nullable', 'required_without:theme_id', 'string', 'max:150'],
             'theme_id' => ['nullable', 'required_without:theme_text', 'integer', 'exists:themes,id'],
+            'user_id' => ['required', 'integer', 'exists:users,id'],
             'status' => ['nullable', Rule::enum(Status::class)],
             'published_at' => ['nullable', 'date'],
             

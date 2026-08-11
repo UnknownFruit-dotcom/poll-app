@@ -23,6 +23,7 @@ class CreatePoll
                 'name' => $input['name'],
                 'theme_text' => $themeText,
                 'theme_id' => $themeId,
+                'user_id' => $input['user_id'],
                 'status' => $input['status'] ?? 'draft',
                 'published_at' => $input['published_at'] ?? null,
             ]);

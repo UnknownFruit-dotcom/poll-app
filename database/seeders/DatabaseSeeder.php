@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
+        $user = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
@@ -49,6 +49,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Do you want to chip in for blinds??',
             'theme_text' => 'Education',
             'theme_id' => $theme->id,
+            'user_id' => $user->id,
         ]);
 
         Option::create([
@@ -70,24 +71,28 @@ class DatabaseSeeder extends Seeder
             'name' => 'Do you want to a work call on Saturday evening??',
             'theme_text' => 'Work',
             'theme_id' => $theme1->id,
+            'user_id' => $user->id,
         ]);
 
         $poll = Poll::create([
             'name' => 'Do you support Squiggly Miggly on president elections??',
             'theme_text' => 'Politics',
             'theme_id' => $theme2->id,
+            'user_id' => $user->id,
         ]);
 
         $poll = Poll::create([
             'name' => 'Hop on Needy Girl Overdose!',
             'theme_text' => 'Entertainment',
             'theme_id' => $theme3->id,
+            'user_id' => $user->id,
         ]);
 
         $poll = Poll::create([
             'name' => 'Are ypu a cat?',
             'theme_text' => 'Other',
             'theme_id' => $theme4->id,
+            'user_id' => $user->id,
         ]);
     }
 }

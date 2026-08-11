@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Poll;
 use App\Models\Theme;
+use App\Models\User;
 use App\Actions\Polls\CreatePoll;
 use App\Actions\Polls\AddOptions;
 use App\Actions\Polls\ChooseOption;
@@ -47,6 +48,11 @@ class PollsController extends Controller
     public function show(string $id)
     {
         return Poll::with('theme', 'options')->findOrFail($id);
+    }
+
+    public function showMy() 
+    {
+        return auth()->user()->polls()->get();
     }
 
     public function addOptions(AddOptionsRequest $request, Poll $poll, AddOptions $action)

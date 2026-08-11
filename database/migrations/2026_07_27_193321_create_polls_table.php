@@ -19,6 +19,8 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('themes')
                 ->nullOnDelete();
+            $table->foreignId('user_id')
+            ->constrained()->cascadeOnDelete();
             $table->string('status', 50)->default('draft');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();

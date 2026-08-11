@@ -16,6 +16,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('themes/{id}', [ThemesController::class, 'destroy']);
     Route::patch('themes/{theme}', [ThemesController::class, 'update']);
 
+    Route::get('polls/my', [PollsController::class, 'showMy']);
     Route::get('polls/{id}', [PollsController::class, 'show']);
     Route::post('polls', [PollsController::class, 'store']);
     Route::post('polls/{poll}/options', [PollsController::class, 'addOptions']);
