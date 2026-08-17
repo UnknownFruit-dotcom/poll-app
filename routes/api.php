@@ -15,18 +15,19 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('polls/my', [PollsController::class, 'showMy']);
     Route::get('polls/{id}', [PollsController::class, 'show']);
+
+    Route::patch('polls/{poll}', [PollsController::class, 'update'])->middleware('can:update,poll');
+    Route::patch('polls/{poll}/status', [PollsController::class, 'changeStatus'])->middleware('can:update,poll');
+
+    Route::post('polls', [PollsController::class, 'store']);
+    Route::post('polls/{poll}/options', [PollsController::class, 'addOptions']);
 });
 
 Route::middleware('auth:sanctum', 'role:admin')->group(function () {
-        Route::post('themes', [ThemesController::class, 'store']);
-        Route::delete('themes/{id}', [ThemesController::class, 'destroy']);
-        Route::patch('themes/{theme}', [ThemesController::class, 'update']);
-
-        Route::post('polls', [PollsController::class, 'store']);
-        Route::post('polls/{poll}/options', [PollsController::class, 'addOptions']);
-        Route::patch('polls/{poll}', [PollsController::class, 'update']);
-        Route::patch('polls/{poll}/status', [PollsController::class, 'changeStatus']);
-    });
+    Route::post('themes', [ThemesController::class, 'store']);
+    Route::delete('themes/{id}', [ThemesController::class, 'destroy']);
+    Route::patch('themes/{theme}', [ThemesController::class, 'update']);
+});
 
 Route::get('themes', [ThemesController::class, 'index']);
 

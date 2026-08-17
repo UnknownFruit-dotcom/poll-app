@@ -101,5 +101,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
             'role' => Role::Admin,
         ]);
+
+        $empty_user = User::factory()->create([
+            'name' => 'Empty User',
+            'email' => 'empty@example.com',
+        ]);
     }
 }
