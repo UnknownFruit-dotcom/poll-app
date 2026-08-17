@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('polls/{poll}/status', [PollsController::class, 'changeStatus'])->middleware('can:update,poll');
 
     Route::post('polls', [PollsController::class, 'store']);
-    Route::post('polls/{poll}/options', [PollsController::class, 'addOptions']);
+    Route::post('polls/{poll}/options', [PollsController::class, 'addOptions'])->middleware('can:update,poll');
 });
 
 Route::middleware('auth:sanctum', 'role:admin')->group(function () {
