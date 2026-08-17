@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Theme;
 use App\Models\Poll;
 use App\Models\Option;
+use App\Enums\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -93,6 +94,12 @@ class DatabaseSeeder extends Seeder
             'theme_text' => 'Other',
             'theme_id' => $theme4->id,
             'user_id' => $user->id,
+        ]);
+
+        $admin = User::factory()->create([
+            'name' => 'Test Admin',
+            'email' => 'admin@example.com',
+            'role' => Role::Admin,
         ]);
     }
 }
