@@ -97,3 +97,7 @@
     color: var(--color-text);
     margin: 0 0 var(--space-3) 0;
 }
+
+p {
+  color: black;
+}
