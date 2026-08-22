@@ -10,12 +10,17 @@
 
 .navbar_nav {
   display: flex;
-  gap: 24px;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+  height: 100%;
+  padding: 0 24px
 }
 
 .navbar_link {
-  color: #374151;
-  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;;
 }
 
 .navbar_profile_img,
@@ -24,5 +29,28 @@
  {
   width: 32px;
   height: 32px;
-  object-fit: cover;
+  object-fit: contain;
+}
+
+.navbar_greeting {
+    font-size: 14px;
+    color: var(--color-text);
+    white-space: nowrap;
+}
+
+.navbar_logout_link {
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    background: transparent;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--color-text);
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.navbar_logout_link:hover {
+    background: var(--color-surface);
+    border-color: #dc2626;
+    color: #dc2626;
 }
