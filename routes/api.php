@@ -14,8 +14,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('themes/{id}', [ThemesController::class, 'show']);
 
     Route::get('polls/my', [PollsController::class, 'showMy']);
-    Route::get('polls/{id}', [PollsController::class, 'show']);
-
+    
     Route::patch('polls/{poll}', [PollsController::class, 'update'])->middleware('can:update,poll');
     Route::patch('polls/{poll}/status', [PollsController::class, 'changeStatus'])->middleware('can:update,poll');
 
@@ -30,6 +29,6 @@ Route::middleware('auth:sanctum', 'role:admin')->group(function () {
 });
 
 Route::get('themes', [ThemesController::class, 'index']);
-
+Route::get('polls/{id}', [PollsController::class, 'show']);
 Route::get('polls', [PollsController::class, 'index']);
 Route::post('polls/{poll}/vote', [PollsController::class, 'chooseOption'])->middleware(['throttle:10,1', VoteThrottle::class]);

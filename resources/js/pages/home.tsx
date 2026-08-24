@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PollModal from '@/components/poll-modal';
 import { usePolls } from '@/hooks/use-polls';
 import { useThemes } from '@/hooks/use-themes';
 
@@ -7,7 +8,7 @@ import './css/home.css';
 export default function Home() {
 
     const [selectedThemeId, setSelectedThemeId] = useState<number | null>(null)
-
+    const [openPollId, setOpenPollId] = useState<number | null>(null);
     const {polls, isLoading: isLoadingPolls, error: pollsError} = usePolls(selectedThemeId);
     const {themes, isLoading: isLoadingThemes, error: themesError} = useThemes();
     
@@ -45,7 +46,7 @@ export default function Home() {
             {!isLoadingPolls && !pollsError && (
                 <ul className='polls_list'>
                     {polls.map((poll) => (
-                        <li className="polls_item" key={poll.id}>
+                        <li className="polls_item" key={poll.id} onClick={() => setOpenPollId(poll.id)}>
                             <h3 className="polls_item_title">{poll.name}</h3>
                             <p className="polls_item_theme">{poll.theme_text}</p>
                             <span className={`badge ${poll.status === 'published' ? 'badge--published' : 'badge--unpublished'}`}>
@@ -57,6 +58,7 @@ export default function Home() {
             )}
             </section>
             
+            <PollModal pollId={openPollId} onClose={() => setOpenPollId(null)} />
         </main>
     );
 }
