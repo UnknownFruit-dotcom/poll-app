@@ -1,0 +1,98 @@
+.poll_modal_title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 var(--space-4) 0;
+}
+
+.poll_modal_options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+    margin-top: var(--space-6);
+}
+
+.poll_modal_option {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--color-text);
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.poll_modal_option:hover {
+    border-color: var(--brand-purple);
+    background: var(--color-surface);
+}
+
+.poll_modal_option--selected {
+    border-color: var(--brand-purple);
+    background: var(--color-surface);
+}
+
+.poll_modal_option input[type="radio"] {
+    accent-color: var(--brand-purple);
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.poll_modal_submit {
+    width: 100%;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 10px;
+    background: var(--brand-purple);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+}
+
+.poll_modal_submit:hover:not(:disabled) {
+    opacity: 0.9;
+}
+
+.poll_modal_submit:disabled {
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+}
+
+.poll_modal_status {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    text-align: center;
+    padding: var(--space-4) 0;
+}
+
+.poll_modal_error {
+    font-size: 13px;
+    color: #b91c1c;
+    background: #fee2e2;
+    padding: var(--space-2) var(--space-3);
+    border-radius: 8px;
+    margin-bottom: var(--space-3);
+}
+
+.poll_modal_success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-6) 0;
+    text-align: center;
+}
+
+.poll_modal_success_text {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-text);
+}

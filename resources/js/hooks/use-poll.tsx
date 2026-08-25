@@ -23,6 +23,7 @@ export function usePoll(pollId: number | null) {
     useEffect(() => {
         if (pollId === null) {
             setPoll(null);
+            
             return;
         }
 

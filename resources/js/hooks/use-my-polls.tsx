@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {showMy } from '@/actions/App/Http/Controllers/Api/PollsController'
 import type { Poll } from './use-polls';
 
@@ -7,38 +7,32 @@ export function useMyPolls(){
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
-        let isMounted = true;
+    const fetchPolls = useCallback(() => {
+        setIsLoading(true);
+        setError(null);
 
-        fetch(showMy().url)
+        return fetch(showMy().url)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`${response.status}`);
                 }
-                
                 return response.json();
             })
-            .then((data: Poll[])=>{
-                if (isMounted) {
-                    setPolls(data);
-                }
+            .then((data: Poll[]) => {
+                setPolls(data);
             })
             .catch((err: Error) => {
-                if (isMounted) {
-                    setError(err.message);
-                }
+                setError(err.message);
             })
             .finally(() => {
-                if (isMounted) {
-                    setIsLoading(false);
-                }
+                setIsLoading(false);
             });
-
-            return()=> {
-                isMounted = false;
-            }
     }, []);
 
-    return {polls, isLoading, error};
+    useEffect(() => {
+        fetchPolls();
+    }, [fetchPolls])
+
+    return {polls, isLoading, error, refetch: fetchPolls};
 }
 

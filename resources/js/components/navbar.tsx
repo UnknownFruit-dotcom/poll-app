@@ -43,10 +43,6 @@ export default function Navbar() {
                         Log in
                     </Link>
                 )}
-
-                <Link href="/" className="navbar_link">
-                    <img src={sun} alt="Theme" className="navbar_theme_img" />
-                </Link>
             </nav>
         </header>
     );

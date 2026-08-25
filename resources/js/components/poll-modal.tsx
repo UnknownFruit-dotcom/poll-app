@@ -2,16 +2,13 @@ import { useState } from 'react';
 import { chooseOption } from '@/actions/App/Http/Controllers/Api/PollsController';
 import { usePoll } from '@/hooks/use-poll';
 import Modal from './modal';
+import { csrfHeaders } from '@/lib/csrf';
+import './css/poll-modal.css';
+
 
 type PollModalProps = {
     pollId: number | null;
     onClose: () => void;
-}
-
-function getCookie(name: string): string | null {
-    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-    
-    return match ? decodeURIComponent(match[2]) : null;
 }
 
 export default function PollModal({pollId, onClose}: PollModalProps){
@@ -38,10 +35,7 @@ export default function PollModal({pollId, onClose}: PollModalProps){
 
         fetch(chooseOption(poll.id).url, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-XSRF-TOKEN': getCookie('XSRF-TOKEN') ?? '',
-            },
+            headers: csrfHeaders(),
             body: JSON.stringify({ option_id: selectedOptionId }),
         })
             .then((response) => {
@@ -61,10 +55,15 @@ export default function PollModal({pollId, onClose}: PollModalProps){
 
      return (
         <Modal isOpen={pollId !== null} onClose={handleClose}>
-            {isLoading && <p>Loading poll...</p>}
-            {error && <p>Error loading poll: {error}</p>}
+            {isLoading && <p className="poll_modal_status">Loading poll...</p>}
+            {error && <p className="poll_modal_error">Error loading poll: {error}</p>}
 
-            {isSubmitted && <p>Your vote has been submitted!</p>}
+            {isSubmitted && (
+            <div className="poll_modal_success">
+                <p>Your vote has been submitted!</p>
+            </div>
+            )}
+            
 
             {!isLoading && !error && !isSubmitted && poll && (
                 <>
@@ -72,7 +71,8 @@ export default function PollModal({pollId, onClose}: PollModalProps){
 
                     <div className="poll_modal_options">
                         {poll.options.map((option) => (
-                            <label key={option.id} className="poll_modal_option">
+                            <label key={option.id} className={`poll_modal_option ${selectedOptionId === option.id ? 'poll_modal_option--selected' : ''}`}
+                            >
                                 <input
                                     type="radio"
                                     name="poll_option"
@@ -85,9 +85,10 @@ export default function PollModal({pollId, onClose}: PollModalProps){
                         ))}
                     </div>
 
-                    {submitError && <p>Error: {submitError}</p>}
+                    {submitError && <p className="poll_modal_error">Error: {submitError}</p>}
 
                     <button
+                        className="poll_modal_submit"
                         onClick={handleSubmit}
                         disabled={selectedOptionId === null || isSubmitting}
                     >
