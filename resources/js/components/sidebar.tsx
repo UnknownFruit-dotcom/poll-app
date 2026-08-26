@@ -4,7 +4,7 @@ import './css/my_sidebar.css';
 import home from './img/home.png';
 import logo from './img/logo.png';
 import my_poll from './img/my_poll.png';
-import poll from './img/poll.png'
+// import poll from './img/poll.png'
 
 export default function Sidebar() {
 
@@ -30,10 +30,10 @@ export default function Sidebar() {
                 <img src={my_poll} alt="My polls" className="sidebar_my_poll_img" />
                     <span className="sidebar_link_text">My polls</span>
                 </Link>
-                <Link href="/top_polls" className="sidebar_link">
+                {/* <Link href="/top_polls" className="sidebar_link">
                     <img src={poll} alt="Top polls" className="sidebar_poll_img" />
                     <span className="sidebar_link_text">Top polls</span>
-                </Link>
+                </Link> */}
                 </nav>
         </aside>
     );

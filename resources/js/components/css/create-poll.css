@@ -1,0 +1,65 @@
+.create_poll_form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    max-width: none;
+    padding: 0;
+    border-radius: 12px;
+    margin-bottom: var(--space-6);
+}
+
+.create_poll_input {
+    padding: 8px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.create_poll_option_row {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.create_poll_section {
+    margin-top: var(--space-6);
+}
+
+.create_poll_remove {
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    width: 36px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.create_poll_add {
+    align-self: flex-start;
+    background: none;
+    border: none;
+    color: var(--brand-purple);
+    font-size: 13px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.create_poll_submit {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 10px;
+    background: var(--brand-purple);
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+}
+
+.create_poll_submit:disabled {
+    background: var(--color-border);
+    cursor: not-allowed;
+}
+
+.create_poll_error {
+    color: #b91c1c;
+    font-size: 13px;
+}

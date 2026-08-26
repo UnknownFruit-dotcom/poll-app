@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './css/my-polls.css';
 import './css/home.css';
+import CreatePollForm from '@/components/create-poll-form';
 import MyPollModal from '@/components/my-poll-modal';
 import { useMyPolls } from '@/hooks/use-my-polls';
 
@@ -42,6 +43,11 @@ export default function MyPolls() {
                         ))}
                     </ul>
                 )}
+            </section>
+
+            <section className="create_poll_section">
+                <h2 className="section_title">Create a poll</h2>
+                <CreatePollForm onCreated={refetch} />
             </section>
 
             <MyPollModal 
