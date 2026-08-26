@@ -101,3 +101,18 @@
 p {
   color: black;
 }
+
+.polls_item_author {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    margin: 0;
+}
+
+.badge--voted {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.polls_item--voted {
+    opacity: 0.7;
+}

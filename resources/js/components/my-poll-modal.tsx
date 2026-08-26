@@ -106,11 +106,21 @@ export default function MyPollModal({ pollId, onClose, onSaved }: MyPollModalPro
                     </div>
 
                     {section === 'stats' && (
-                        <div className="my_poll_modal_section">
-                            <p>Stats coming soon.</p>
-                        </div>
+    <div className="my_poll_modal_section">
+        <p className="my_poll_modal_total_votes">
+            Total votes: {poll.options.reduce((sum, o) => sum + o.user_votes_count, 0)}
+        </p>
 
-                    )}
+        <ul className="my_poll_modal_stats_list">
+            {poll.options.map((option) => (
+                <li key={option.id} className="my_poll_modal_stats_item">
+                    <span>{option.content}</span>
+                    <span>{option.user_votes_count} votes</span>
+                </li>
+            ))}
+        </ul>
+    </div>
+)}
 
                     {section === 'edit' && (
                         <div className="my_poll_modal_section">

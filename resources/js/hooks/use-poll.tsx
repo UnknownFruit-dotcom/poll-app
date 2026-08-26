@@ -4,6 +4,8 @@ import { show } from '@/actions/App/Http/Controllers/Api/PollsController';
 export type Option = {
     id: number;
     content: string;
+    user_votes_count: number;
+    voted_for: boolean;
 };
 
 export type PollDetail = {

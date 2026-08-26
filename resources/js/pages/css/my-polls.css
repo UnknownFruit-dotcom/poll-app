@@ -38,3 +38,28 @@
     border-radius: 8px;
     margin: var(--space-3) 0;
 }
+
+.auth_required {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 14px;
+}
+
+.auth_required_actions {
+    display: flex;
+    gap: var(--space-3);
+}
+
+.auth_required_link {
+    padding: 8px 20px;
+    border-radius: 8px;
+    background: var(--brand-purple);
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+}

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import PollModal from '@/components/poll-modal';
 import { usePolls } from '@/hooks/use-polls';
 import { useThemes } from '@/hooks/use-themes';
+import { getVotedPollIds } from '@/lib/voted-polls';
 
 import './css/home.css';
 
@@ -11,6 +12,7 @@ export default function Home() {
     const [openPollId, setOpenPollId] = useState<number | null>(null);
     const {polls, isLoading: isLoadingPolls, error: pollsError} = usePolls(selectedThemeId);
     const {themes, isLoading: isLoadingThemes, error: themesError} = useThemes();
+    const votedPollIds = getVotedPollIds();
     
     function handleThemeClick(themeId: number){
         setSelectedThemeId((current) => (current === themeId? null: themeId));
@@ -28,11 +30,12 @@ export default function Home() {
                 <ul className='theme_list'>
                     {themes.map((theme) => (
                         <li
+                            
                             key={theme.id}
                             className={`theme_item ${selectedThemeId === theme.id ? 'theme_item--active' : ''}`}
                             onClick={() => handleThemeClick(theme.id)}>
                                 {theme.name}
-                            </li>
+                        </li>
                     ))}
                 </ul>
             )}
@@ -46,9 +49,17 @@ export default function Home() {
             {!isLoadingPolls && !pollsError && (
                 <ul className='polls_list'>
                     {polls.map((poll) => (
-                        <li className="polls_item" key={poll.id} onClick={() => setOpenPollId(poll.id)}>
+                        <li
+                            className={`polls_item ${votedPollIds.includes(poll.id) ? 'polls_item--voted' : ''}`}
+                            key={poll.id}
+                            onClick={() => setOpenPollId(poll.id)}
+                        >
                             <h3 className="polls_item_title">{poll.name}</h3>
                             <p className="polls_item_theme">{poll.theme_text}</p>
+                            {votedPollIds.includes(poll.id) && (
+                                <span className="badge badge--voted">Voted</span>
+                            )}
+                            
                             <span className={`badge ${poll.status === 'published' ? 'badge--published' : 'badge--unpublished'}`}>
                                 {poll.status === 'published' ? 'Published' : 'Unpublished'}
                             </span>
@@ -58,7 +69,11 @@ export default function Home() {
             )}
             </section>
             
-            <PollModal pollId={openPollId} onClose={() => setOpenPollId(null)} />
+            <PollModal
+                pollId={openPollId}
+                onClose={() => setOpenPollId(null)}
+                hasVoted={openPollId !== null && votedPollIds.includes(openPollId)}
+            />
         </main>
     );
 }
