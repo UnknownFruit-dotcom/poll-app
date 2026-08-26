@@ -6,6 +6,7 @@ use App\Models\Poll;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\UserVote;
+use Illuminate\Validation\ValidationException;
 
 class ChooseOption
 {
