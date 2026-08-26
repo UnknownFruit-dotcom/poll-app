@@ -47,7 +47,29 @@ class PollsController extends Controller
 
     public function show(string $id)
     {
-        return Poll::with('theme', 'options')->findOrFail($id);
+        $userId = auth('sanctum')->id();
+
+        $poll = Poll::query()
+            ->with(['theme', 'options'])
+            ->findOrFail($id);
+
+        $isOwner = $userId && (int) $poll->user_id === (int) $userId;
+
+        $poll->load([
+            'options' => function ($q) use ($userId, $isOwner) {
+                if ($isOwner) {
+                    $q->withCount('userVotes');
+                }
+
+                if ($userId) {
+                    $q->withExists([
+                        'userVotes as voted_for' => fn ($v) => $v->where('user_id', $userId),
+                    ]);
+                }
+            },
+        ]);
+
+        return $poll;
     }
 
     public function showMy() 
@@ -63,7 +85,7 @@ class PollsController extends Controller
     }
 
     public function chooseOption(ChooseOptionRequest $request, Poll $poll, ChooseOption $action) {
-        $userId = auth()->id();
+        $userId = auth('sanctum')->id();
 
         $userVote = $action->vote(
             $poll,
